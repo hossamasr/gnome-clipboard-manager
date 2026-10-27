@@ -1,0 +1,15 @@
+{
+  "name": "Clipboard Manager",
+  "description": "A clipboard manager that tracks and stores your copied text history locally for easy restoration. (Declares clipboard access: monitors and reads clipboard text locally to maintain copy history; no data is shared with third parties).",
+  "uuid": "ClipboardManger@hossamasr.com",
+  "url": "https://github.com/hossamasr/gnome-clipboard-manager",
+  "shell-version": [
+    "45",
+    "46",
+    "47",
+    "48",
+    "49",
+    "50",
+    "51"
+  ]
+}

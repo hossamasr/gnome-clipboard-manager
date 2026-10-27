@@ -1,0 +1,12 @@
+/* Stylesheet for Clipboard Manager */
+
+.clipboard-delete-btn {
+    padding: 2px 6px;
+    border-radius: 99px;
+    color: #cccccc;
+}
+
+.clipboard-delete-btn:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.2);
+}

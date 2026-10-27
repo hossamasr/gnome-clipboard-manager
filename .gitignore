@@ -1,0 +1,15 @@
+# Generated extension bundles
+*.zip
+*.tar.gz
+
+# OS and Editor files
+.DS_Store
+*.swp
+*~
+.vscode/
+.idea/
+
+# Node / Scratch files
+node_modules/
+.venv/
+venv/
