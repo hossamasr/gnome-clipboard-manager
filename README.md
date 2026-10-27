@@ -9,12 +9,12 @@ A lightweight, modern, and privacy-first clipboard manager extension for GNOME S
 
 ## Features
 
-- **⚡ Event-Driven Performance:** Hooks directly into Mutter's window manager signals (`owner-changed`). Consumes zero CPU when idle—no polling timers or battery drain.
-- **🔘 Clear Active Indicator:** Uses native radio ornaments (`DOT` / `NO_DOT`) and bold text to instantly show which snippet is currently on your system clipboard.
-- **🔄 One-Click Restore:** Click any previous clip to silently put it back onto your system clipboard.
-- **🗑️ Individual Deletion:** Delete sensitive clips (like passwords or tokens) individually with the trash icon without clearing your whole history.
-- **🧹 Clear All:** Quick button to wipe clipboard history at any time.
-- **🔒 Privacy First:** All clipboard data is stored strictly in memory and stays 100% on your local machine. No telemetry, no network calls, and no third-party sharing.
+- **Event-Driven Performance:** Hooks directly into Mutter's window manager signals (`owner-changed`). Consumes zero CPU when idle—no polling timers or battery drain.
+- **Clear Active Indicator:** Uses native radio ornaments (`DOT` / `NO_DOT`) and bold text to instantly show which snippet is currently on your system clipboard.
+- **One-Click Restore:** Click any previous clip to silently put it back onto your system clipboard.
+- **Individual Deletion:** Delete sensitive clips (like passwords or tokens) individually with the trash icon without clearing your whole history.
+- **Clear All:** Quick button to wipe clipboard history at any time.
+- **Privacy First:** All clipboard data is stored strictly in memory and stays 100% on your local machine. No telemetry, no network calls, and no third-party sharing.
 
 ---
 
