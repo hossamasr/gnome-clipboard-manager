@@ -36,21 +36,17 @@ class Indicator extends PanelMenu.Button {
 
         this._history = [];
 
-        // Load the custom icon from the extension's icons directory
         const iconPath = `${extension.path}/icons/clipboard-symbolic.svg`;
         this.add_child(new St.Icon({
             gicon: Gio.icon_new_for_string(iconPath),
             style_class: 'system-status-icon',
         }));
 
-        // 1. Dynamic section for history items
         this._historySection = new PopupMenu.PopupMenuSection();
         this.menu.addMenuItem(this._historySection);
 
-        // 2. Separator line
         this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
 
-        // 3. Clear History button
         const clearItem = new PopupMenu.PopupMenuItem(_('Clear History'));
         clearItem.connect('activate', () => {
             this.clearHistory();
@@ -62,19 +58,15 @@ class Indicator extends PanelMenu.Button {
     }
 
     addText(text) {
-        // Prevent duplicate consecutive copies
         if (this._history.length > 0 && this._history[0] === text)
             return;
 
-        // If it was copied previously, remove the old occurrence
         const existingIndex = this._history.indexOf(text);
         if (existingIndex !== -1)
             this._history.splice(existingIndex, 1);
 
-        // Put the newly active text at the top (index 0)
         this._history.unshift(text);
 
-        // Cap history limit
         if (this._history.length > MAX_HISTORY)
             this._history.pop();
 
@@ -85,7 +77,6 @@ class Indicator extends PanelMenu.Button {
         const isDeletingActive = (index === 0);
         this._history.splice(index, 1);
 
-        // If we deleted the active item, update the clipboard to the new top item
         if (isDeletingActive) {
             const clipboard = St.Clipboard.get_default();
             if (this._history.length > 0) {
@@ -113,27 +104,21 @@ class Indicator extends PanelMenu.Button {
             return;
         }
 
-        // Render each history item
         this._history.forEach((fullText, index) => {
             const cleanText = fullText.replace(/\s+/g, ' ').trim();
             const preview = cleanText.length > 30 ? cleanText.substring(0, 30) + '...' : cleanText;
 
             const item = new PopupMenu.PopupMenuItem(preview);
 
-            // Expand label to push the delete button to the right
             item.label.x_expand = true;
 
-            // The top item (index 0) is the currently active clipboard item
             const isSelected = (index === 0);
 
-            // Circle indicator: DOT when selected, NO_DOT (or fallback to NONE on GNOME 45) when not
             const unselectedOrnament = PopupMenu.Ornament.NO_DOT ?? PopupMenu.Ornament.NONE;
             item.setOrnament(isSelected ? PopupMenu.Ornament.DOT : unselectedOrnament);
 
-            // Bold text when selected
             item.label.style = isSelected ? 'font-weight: bold;' : '';
 
-            // Delete button on the right
             const deleteIcon = new St.Icon({
                 icon_name: 'edit-delete-symbolic',
                 style_class: 'popup-menu-icon',
@@ -151,7 +136,6 @@ class Indicator extends PanelMenu.Button {
 
             item.add_child(deleteButton);
 
-            // Click row to restore to clipboard
             item.connect('activate', () => {
                 const clipboard = St.Clipboard.get_default();
                 clipboard.set_text(St.ClipboardType.CLIPBOARD, fullText);
@@ -167,7 +151,6 @@ export default class ClipboardManagerExtension extends Extension {
         this._indicator = new Indicator(this);
         Main.panel.addToStatusArea(this.uuid, this._indicator);
 
-        // Listen for clipboard changes
         this._selection = global.display.get_selection();
         this._selectionSignalId = this._selection.connect(
             'owner-changed',
